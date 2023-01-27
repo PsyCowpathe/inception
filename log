@@ -6,9 +6,12 @@
 #    By: agirona <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 14:50:35 by agirona           #+#    #+#              #
-#    Updated: 2023/01/27 15:20:59 by agirona          ###   ########lyon.fr    #
+#    Updated: 2023/01/27 15:25:43 by agirona          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
+
+#Configuration for Debian Buster on Virtual Box
+#Iso : https://www.debian.org/releases/buster/debian-installer/ --> netinst CD image = amd64
 
 su
 
@@ -47,3 +50,5 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo docker run hello-world
+
+dwdw
