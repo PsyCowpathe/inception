@@ -6,7 +6,7 @@
 #    By: agirona <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 14:50:35 by agirona           #+#    #+#              #
-#    Updated: 2023/01/27 15:07:36 by agirona          ###   ########lyon.fr    #
+#    Updated: 2023/01/27 15:17:23 by agirona          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,3 +22,11 @@ sudo apt-get curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ssh-keygen -t rsa -b 4096
+
+#Install docker
+
+sudo apt-get install \
+ca-certificates \
+curl \
+gnupg \
+lsb-release
