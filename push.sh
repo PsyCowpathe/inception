@@ -1,3 +1,3 @@
-git add log
+git add *
 git commit -m "$@"
 git push
