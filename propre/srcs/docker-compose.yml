@@ -1,0 +1,30 @@
+version: "2.15."
+
+volumes:
+
+        ng_volume:
+                name: ng_volume
+                driver: local
+                driver_opts:
+                        type: nonce
+                        o: bind
+                        device: /home/agirona/data/inception_db
+
+services:
+
+        nginx:
+                container_name: nginx
+                image: nginx
+                build: ./requirements/nginx
+                env_file: 
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart: always
+                ports:
+                        - 443:443
+
+
+
+networks:
+        inception-network:
+                driver: bridge
