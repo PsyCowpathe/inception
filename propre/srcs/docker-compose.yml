@@ -7,7 +7,7 @@ volumes:
                 driver_opts:
                         type: none
                         o: bind
-                        device: /home/agirona/data/inception_wp
+                        device: /home/cguiot/data/inception_wp
 
         db_volume:
                 name: db_volume
@@ -15,7 +15,7 @@ volumes:
                 driver_opts:
                         type: none
                         o: bind
-                        device: /home/agirona/data/inception_db
+                        device: /home/cguiot/data/inception_db
 
 services:
 
