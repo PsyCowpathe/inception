@@ -5,7 +5,7 @@ RUN apt-get upgrade -y \
 && apt-get upgrade -y nginx
 
 RUN apt-get install -y openssl \
-&& openssl req -x509 -nodes -days 365 -subj "/C=FR/ST=France/L=Lyon/O=42/OU=42/CN=agirona" -newkey rsa:4096 -keyout /etc/nginx/cert.key -out /etc/nginx/cert.crt
+&& openssl req -x509 -nodes -days 365 -subj "/C=FR/ST=France/L=Lyon/O=42/OU=42/CN=cguiot" -newkey rsa:4096 -keyout /etc/nginx/cert.key -out /etc/nginx/cert.crt
 
 COPY conf/nginx.conf /etc/nginx/sites-enabled
 
