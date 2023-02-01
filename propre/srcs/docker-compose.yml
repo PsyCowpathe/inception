@@ -9,6 +9,14 @@ volumes:
                         o: bind
                         device: /home/agirona/data/inception_wp
 
+        db_volume:
+                name: db_volume
+                driver: local
+                driver_opts:
+                        type: none
+                        o: bind
+                        device: /home/agirona/data/inception_db
+
 services:
 
         nginx:
@@ -16,7 +24,7 @@ services:
                 image: nginx
                 build: ./requirements/nginx
                 depends_on:
-                        -wordpress
+                        - wordpress
                 env_file: 
                         - .env
                 domainname: ${DOMAIN_NAME}
@@ -24,20 +32,37 @@ services:
                 ports:
                         - 443:443
                 networks:
-                        -inception-network
+                        - inception-network
                 volumes:
                         - wp_volume:/var/www
 
         wordpress:
                 container_name: wordpress
                 image: wordpress
-                build: ./requirements/worpress
+                build: ./requirements/wordpress
+                depends_on:
+                        - mariadb
                 env_file:
                         - .env
                 domainname: ${DOMAIN_NAME}
                 restart : on-failure
+                networks :
+                        - inception-network
                 volumes:
                         - wp_volume:/var/www
+
+        mariadb:
+                container_name: mariadb
+                image: mariadb
+                build: ./requirements/mariadb
+                env_file:
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart: on-failure
+                networks:
+                        - inception-network
+                volumes:
+                        - db_volume:/var/lib/mysql
 
 networks:
         inception-network:
