@@ -1,5 +1,5 @@
-#VM configuration for Debian Buster on Virtual Box
-#Iso : https://www.debian.org/releases/buster/debian-installer/ --> netinst CD image = amd64
+VM configuration for Debian Buster on Virtual Box
+Iso link : https://www.debian.org/releases/buster/debian-installer/ take the netinst CD image amd64
 
 su
 
@@ -32,9 +32,13 @@ echo \
 
 sudo apt-get update
 
-#if error 
-#sudo chmod a+r /etc/apt/keyrings/docker.gpg
-#sudo apt-get update
+if the last command return an error do :
+{
+  sudo chmod a+r /etc/apt/keyrings/docker.gpg
+  sudo apt-get update
+}
+
+Then finish the instalation with :
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo docker run hello-world
