@@ -1,14 +1,13 @@
-version: "2.15."
+version: "2.15.1"
 
 volumes:
-
-        ng_volume:
-                name: ng_volume
+        wp_volume:
+                name: wp_volume
                 driver: local
                 driver_opts:
-                        type: nonce
+                        type: none
                         o: bind
-                        device: /home/agirona/data/inception_db
+                        device: /home/agirona/data/inception_wp
 
 services:
 
@@ -16,14 +15,29 @@ services:
                 container_name: nginx
                 image: nginx
                 build: ./requirements/nginx
+                depends_on:
+                        -wordpress
                 env_file: 
                         - .env
                 domainname: ${DOMAIN_NAME}
-                restart: always
+                restart: on-failure
                 ports:
                         - 443:443
+                networks:
+                        -inception-network
+                volumes:
+                        - wp_volume:/var/www
 
-
+        wordpress:
+                container_name: wordpress
+                image: wordpress
+                build: ./requirements/worpress
+                env_file:
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart : on-failure
+                volumes:
+                        - wp_volume:/var/www
 
 networks:
         inception-network:
