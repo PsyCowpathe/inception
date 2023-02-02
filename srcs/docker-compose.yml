@@ -1,13 +1,69 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    docker-compose.yml                                 :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: agirona <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/27 11:58:03 by agirona           #+#    #+#              #
-#    Updated: 2023/01/27 11:58:05 by agirona          ###   ########lyon.fr    #
-#                                                                              #
-# **************************************************************************** #
+version: "2.15.1"
 
+volumes:
+        wp_volume:
+                name: wp_volume
+                driver: local
+                driver_opts:
+                        type: none
+                        o: bind
+                        device: /home/agirona/data/inception_wp
 
+        db_volume:
+                name: db_volume
+                driver: local
+                driver_opts:
+                        type: none
+                        o: bind
+                        device: /home/agirona/data/inception_db
+
+services:
+
+        nginx:
+                container_name: nginx
+                image: nginx
+                build: ./requirements/nginx
+                depends_on:
+                        - wordpress
+                env_file: 
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart: on-failure
+                ports:
+                        - 443:443
+                networks:
+                        - inception-network
+                volumes:
+                        - wp_volume:/var/www
+
+        wordpress:
+                container_name: wordpress
+                image: wordpress
+                build: ./requirements/wordpress
+                depends_on:
+                        - mariadb
+                env_file:
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart : on-failure
+                networks :
+                        - inception-network
+                volumes:
+                        - wp_volume:/var/www
+
+        mariadb:
+                container_name: mariadb
+                image: mariadb
+                build: ./requirements/mariadb
+                env_file:
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart: on-failure
+                networks:
+                        - inception-network
+                volumes:
+                        - db_volume:/var/lib/mysql
+
+networks:
+        inception-network:
+                driver: bridge
