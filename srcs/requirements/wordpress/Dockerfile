@@ -22,8 +22,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar init.sh
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-RUN chown -R www-data. /var/www/html  \
-&& chmod 777 /var/www/*
+RUN chown -R www-data. /var/www/html 
 
 EXPOSE 9000
 
