@@ -44,4 +44,4 @@ Then finish the instalation with :
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin  
 sudo docker run hello-world  
   
-In /etc/hosts add the line : 127.0.1.1  <login>.42.fr <login>
+In /etc/hosts add the line : 127.0.1.1  \<login\>.42.fr \<login\>
