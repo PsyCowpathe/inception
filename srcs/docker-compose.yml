@@ -1,5 +1,7 @@
 version: "2.15.1"
 
+#Volume creation
+
 volumes:
         wp_volume:
                 name: wp_volume
@@ -16,6 +18,8 @@ volumes:
                         type: none
                         o: bind
                         device: /home/agirona/data/inception_db
+
+#Service creation
 
 services:
 
@@ -63,6 +67,8 @@ services:
                         - inception-network
                 volumes:
                         - db_volume:/var/lib/mysql
+
+#Network creation
 
 networks:
         inception-network:
