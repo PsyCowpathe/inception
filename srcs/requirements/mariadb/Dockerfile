@@ -6,7 +6,6 @@ FROM	debian:buster
 
 RUN apt-get upgrade -y \
 && apt-get update -y \
-#&& apt-get install -y procps \
 && apt-get install -y mariadb-server
 
 #Delete original conf file of mariadb
@@ -17,7 +16,6 @@ RUN rm /etc/mysql/mariadb.conf.d/50-server.cnf
 
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d
 COPY tools/init.sh ./
-COPY tools/init_db.sql ./
 
 #Create file for database
 
