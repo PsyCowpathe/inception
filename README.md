@@ -4,11 +4,11 @@ Iso link : https://www.debian.org/releases/buster/debian-installer/ take the net
 su  
   
 sudo apt-get update  
-sudo apt-get install  
+sudo apt-get upgrade  
   
-sudo apt-get zsh  
-sudo apt-get git  
-sudo apt-get curl  
+sudo apt-get install zsh  
+sudo apt-get install git  
+sudo apt-get install curl  
   
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  
   
