@@ -6,7 +6,7 @@ mysqld_safe &
 
 #Waiting for previous command to finish execution
 
-sleep 3
+sleep 5
 
 #Start mysql command line as root then create the database and enable unicode.
 #Collate is used to sort and provide some specific properties to the database
@@ -23,7 +23,7 @@ sleep 3
 
 #Using root user to shutdown the database
 
-mysqladmin -uroot -p $DB_ROOT_PSWD shutdown
+mysqladmin -uroot -p$DB_ROOT_PSWD shutdown
 
 #Run the database 
 

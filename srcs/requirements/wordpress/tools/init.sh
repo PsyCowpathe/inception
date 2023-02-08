@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 20
+
 #Fill the wordpress config file with env var
 
 sed -i s/vDB_HOST/$DB_HOST/g wp-config.php
